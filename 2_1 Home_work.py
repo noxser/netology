@@ -1,5 +1,5 @@
 
-# данные берем из txt файла
+# данные берем из txt файла cook_book.txt
 def read_cook_book_from_txt_file():
     cook_book = {}  # пустой словарь для книгим рецептов
     ingridients_list = []  # список ингридиетнтов
