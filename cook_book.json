@@ -1,0 +1,35 @@
+{
+  "Омлет": [
+    {
+      "ingridient_name": "Яйца", "quantity": 2, "measure": "шт"
+    },
+    {
+      "ingridient_name": "Помидоры", "quantity": 100, "measure": "гр"
+    }
+  ],
+  "Салат": [
+    {
+      "ingridient_name": "Огурцы", "quantity": 100, "measure": "гр"
+    },
+    {
+      "ingridient_name": "Помидоры", "quantity": 100, "measure": "гр"
+    },
+    {
+      "ingridient_name": "Майонез", "quantity": 20, "measure": "гр"
+    }
+    ],
+  "Бутерброды": [
+    {
+      "ingridient_name": "хлеб", "quantity": 200, "measure": "гр"
+    },
+    {
+      "ingridient_name": "колбаса", "quantity": 100, "measure": "гр"
+    },
+    {
+      "ingridient_name": "сыр", "quantity": 100, "measure": "гр"
+    },
+    {
+      "ingridient_name": "майонез", "quantity": 60, "measure": "гр"
+    }
+    ]
+  }
