@@ -1,20 +1,17 @@
-
 # данные берем из txt файла cook_book.txt
 def read_cook_book_from_txt_file():
     cook_book = {}  # пустой словарь для книгим рецептов
-    ingridients_list = []  # список ингридиетнтов
     with open('cook_book.txt','r', encoding = 'utf8') as f:
         for line in f:
             dishe = line.lower().strip() # удаляет все знаки препинания
-            ingridients_number = int(f.readline())
-            for index in range(ingridients_number):
-                ingridient = f.readline()
-                ingridient = ingridient.lower().strip()
-                ingridient = ingridient.split(' | ')
-                ingridients_number_dict = dict(ingridient_name = ingridient[0], quantity = int(ingridient[1]), measure = ingridient[2])
+            ing_number = int(f.readline())
+            ingridients_list = [] # список ингридиетнтов в след цикле наполняем и потом стираем )
+            for index in range(ing_number):
+                ing = f.readline()
+                ing = ing.lower().strip().split(' | ')
+                ingridients_number_dict = dict(ingridient_name=ing[0], quantity=int(ing[1]), measure=ing[2])
                 ingridients_list.append(ingridients_number_dict)
             cook_book[dishe] = ingridients_list
-            ingridients_list = [] #очищяем список ингридиентво для следующей итерации
             f.readline()
     return cook_book
 
@@ -33,7 +30,8 @@ def get_shop_list_by_dishes(dishes, person_count):
 
 def print_shop_list(shop_list):
     for shop_list_item in shop_list.values():
-        print('{} {} {}'.format(shop_list_item['ingridient_name'], shop_list_item['quantity'],shop_list_item['measure']))
+        print('{} {} {}'.format(shop_list_item['ingridient_name'],\
+                                shop_list_item['quantity'], shop_list_item['measure']))
 
 def create_shop_list():
     person_count = int(input('Введите количество человек: '))
