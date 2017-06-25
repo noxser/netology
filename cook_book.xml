@@ -1,0 +1,17 @@
+<dishes info="книга рецептов">
+    <dish name="Омлет">
+        <ingridient ingridient_name="Яйца" quantity="2" measure="шт" />
+        <ingridient ingridient_name="Помидоры" quantity="100" measure="гр" />
+    </dish>
+    <dish name="Салат">
+        <ingridient ingridient_name="Огурцы" quantity="100" measure="гр" />
+        <ingridient ingridient_name="Помидоры" quantity="100" measure="гр" />
+        <ingridient ingridient_name="Майонез" quantity="20" measure="гр" />
+    </dish>
+    <dish name="Бутерброды">
+        <ingridient ingridient_name="Огурцы" quantity="100" measure="гр" />
+        <ingridient ingridient_name="Помидоры" quantity="100" measure="гр" />
+        <ingridient ingridient_name="Майонез" quantity="20" measure="гр" />
+        <ingridient ingridient_name="Майонез" quantity="20" measure="гр" />
+    </dish>
+</dishes>
