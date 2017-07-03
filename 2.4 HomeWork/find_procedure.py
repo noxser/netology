@@ -1,11 +1,11 @@
 # # находим файлы с расширение sql в папке migration с помощью glob
 # import glob
-# new_list = glob.glob(os.path.join(Migration_abs_path, '*.sql'))
+# new_list = glob.glob(os.path.join(migration_abs_path, '*.sql'))
 # new_list = glob.glob("*.sql")
 
 # # находим файлы с расширение sql в папке migration с помощью endswith
 #
-# file_list = os.listdir(Migration_abs_path)
+# file_list = os.listdir(migration_abs_path)
 # new_list = []
 # for file in file_list:
 #     if file.endswith('.sql') == True:
@@ -13,7 +13,7 @@
 
 # # находим файлы с расширение sql в папке migration с помощью path.splitext
 #
-# files = os.listdir(Migration_abs_path)
+# files = os.listdir(migration_abs_path)
 # new_list = []
 # for file in files:
 #     name, extension = os.path.splitext(file)
