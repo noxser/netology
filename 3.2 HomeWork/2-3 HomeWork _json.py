@@ -24,7 +24,6 @@ def decoding_file(file):
 def open_file(file_name, encoding_type):
     with open(file_name, encoding=encoding_type) as f:
         data = json.load(f)
-
         list_words = []
         count_dict = {}
         # собираем в кучу весь текст из 'title' и 'description'
@@ -40,7 +39,6 @@ def open_file(file_name, encoding_type):
             else:
                 if word.lower() not in count_dict:
                     count_dict[word.lower()] = int(list_words.count(word))
-
         print('В файле {} * {} * обработано:'.format(f.name, (data['rss']['channel']['title'])))
         print('Cлов {} шт. '.format(len(list_words)))
         print('Уникальных слов {} шт. длиной более 5 символов'.format(len(count_dict)))
