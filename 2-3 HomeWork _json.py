@@ -1,6 +1,7 @@
 import chardet
 import json
 
+
 # основная фун-я для сбора всего в кучу и обработки файлов
 def main_function():
     file_list = ['newsafr.json', 'newscy.json', 'newsfr.json', 'newsit.json']
@@ -9,12 +10,14 @@ def main_function():
         count_dict = open_file(file_name, encoding_type)
         print_sort_words(count_dict)
 
+
 # Открывает файл для декодирования выдает тип кодировки документа
 def decoding_file(file):
     with open(file, 'rb') as f:
         data = f.read()
         result = chardet.detect(data)
     return result['encoding']
+
 
 # окрываем файл уже с нужно кодировкой и обрабатываем его как json
 def open_file(file_name, encoding_type):
@@ -32,7 +35,7 @@ def open_file(file_name, encoding_type):
             list_words += (text_news['description']).split()
         for word in list_words:
             if len(word) < 6:
-                 continue
+                continue
             else:
                 if word.lower() not in count_dict:
                     count_dict[word.lower()] = int(list_words.count(word))
@@ -43,18 +46,20 @@ def open_file(file_name, encoding_type):
         print('Новостей {} шт обработанно.'.format(len(data['rss']['channel']['items'])))
     return count_dict
 
+
 # для удорбства отдельно вынес печать 10 наиболее встречаемых слов
 def print_sort_words(count_dict):
     # отсортировали по значения словарь и перевернул чтобы самое большое было первым
     # циклом почистил его оставив 10 значений с начала
     # пока придумал так можно и лучше ))) но пока знаний нехватает )
-    reves_count_dict = (dict(reversed((sorted(count_dict.items(), key = lambda item: item[1])))))
+    reves_count_dict = (dict(reversed((sorted(count_dict.items(), key=lambda item: item[1])))))
     reves_count_dict_sorted = {}
     for key, value in reves_count_dict.items():
         if len(reves_count_dict_sorted) < 10:
             reves_count_dict_sorted[key] = value
-    for key,value in  reves_count_dict_sorted.items():
+    for key, value in reves_count_dict_sorted.items():
         print('{1} - {0}'.format(key, value))
     print('\n')
+
 
 main_function()
