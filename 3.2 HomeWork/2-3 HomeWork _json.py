@@ -1,6 +1,7 @@
 import chardet
 import json
 
+# добавил через вебморду гитхаба для проверки ))) IDE PyCharm
 
 # основная фун-я для сбора всего в кучу и обработки файлов
 def main_function():
