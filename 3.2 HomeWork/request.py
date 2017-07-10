@@ -1,3 +1,0 @@
-import request
-
-print('hello')
