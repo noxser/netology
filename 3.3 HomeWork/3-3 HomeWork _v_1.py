@@ -42,7 +42,7 @@ def translate_it(text, lang_sourse):
 
 # создаем файлик txt с название оригинал + RU и пишем перевод в него
 def write_to_file(text, file_name):
-    with open(file_name + '_RU.txt', 'w', encoding='utf8') as f:
+    with open(file_name, 'w', encoding='utf8') as f:
         f.write(text)
 
 # собираем в кучу все
@@ -52,7 +52,8 @@ def main_function():
         name, extension = os.path.splitext(file_name)
         text = open_file(file_name)
         text_translate = translate_it(text, name)
-        write_to_file(text_translate, name)
+        name_result = name + '_RU.txt'
+        write_to_file(text_translate, name_result)
 
 
 print('Начало работы скрипта', ctime())

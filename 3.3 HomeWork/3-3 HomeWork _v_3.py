@@ -70,27 +70,17 @@ def translate_it(text, lang_sourse):
 
 # создаем файлик txt с название оригинал + RU и пишем перевод в него
 def write_to_file(text, file_name):
-    with open(file_name + '_RU.txt', 'w', encoding='utf8') as f:
+    with open(file_name, 'w', encoding='utf8') as f:
         f.write(text)
 
-# собираем в кучу все
-
-# def main_function(file_list):
-#     file_list = ['DE.txt', 'EN.txt', 'ES.txt', 'FR.txt']
-#     for file_name in file_list:
-#         name, extension = os.path.splitext(file_name)
-#         text = open_file(file_name)
-#         lang_sourse = detect_lang(text)
-#         text_translate = translate_it(text, lang_sourse)
-#         write_to_file(text_translate, name)
-#     print('Конец работы скрипта')
 
 def main_function(file_name):
     name, extension = os.path.splitext(file_name)
     text = open_file(file_name)
     lang_sourse = detect_lang(text)
     text_translate = translate_it(text, lang_sourse)
-    write_to_file(text_translate, name)
+    name_result = name + '_RU.txt'
+    write_to_file(text_translate, name_result)
 
 
 # задаем колличество потоков
