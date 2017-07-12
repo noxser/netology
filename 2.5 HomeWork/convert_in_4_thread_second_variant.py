@@ -31,6 +31,7 @@ num_threads = 4
 и функцию которая обрарбатывает их, с помошью map все это собираем в кучу
 zip используем для состыковуи операции и имя файла для вывода его имени в печать)
 """
+
 with ThreadPoolExecutor(num_threads) as executor:
     for file, funk in zip(os.listdir('Source'), executor.map(convert_file, os.listdir('Source'))):
         print(file, '  -->  done in  ', ctime())
