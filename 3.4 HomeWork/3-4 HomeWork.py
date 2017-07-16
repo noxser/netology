@@ -25,18 +25,18 @@ def sort_my_friend(params, my_friends_list):
     return my_friends_list_new
 
 
-# получаем инофрмацию по ID
+# получаем инофрмацию по ID пользователя
 def user_ifo(params, user_id):
     params['user_ids'] = user_id
     response = requests.get('https://api.vk.com/method/users.get', params)
     return response.json()['response'][0]['last_name'] + ' ' + response.json()['response'][0]['first_name']
 
-# ищем общих друзей
+# ищем общих друзей friends.getMutual в помощь
 def mutual_friends(params, my_friends_list_new):
     i = 0
     mutual_friends_dict = {}
     for user in my_friends_list_new:
-        # sleep(0.1)
+        # sleep(0.1) не нужен вроде гудворк и так
         if len(my_friends_list_new[i+1:]) == 0:
             continue
         params['source_uid'] = user
