@@ -2,7 +2,7 @@ from time import sleep, ctime
 import requests
 
 
-TOKEN = '308e8023a078419ed8a4591091bcd0e35d4b18079a672d8ba5a421b3bada9b835b2787fdf7b0e14f380e8'
+TOKEN = ''
 VERSION = '5.67'
 params = {'access_token': TOKEN, 'v': VERSION}
 
