@@ -52,6 +52,7 @@ def mutual_friends_dict(params, my_friends_list_new):
         if mutual_friends_dict[key] == len(my_friends_list_new)-1:
             print('Общий друг id {} {}'.format(key, user_ifo(params, key)))
 
+
 # ищем общих друзей friends.getMutual в помощь используем set
 def mutual_friends_set(params, my_friends_list_new):
     i = 0
