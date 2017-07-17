@@ -31,8 +31,8 @@ def user_ifo(params, user_id):
     response = requests.get('https://api.vk.com/method/users.get', params)
     return response.json()['response'][0]['last_name'] + ' ' + response.json()['response'][0]['first_name']
 
-# ищем общих друзей friends.getMutual в помощь
-def mutual_friends(params, my_friends_list_new):
+# ищем общих друзей friends.getMutual в помощь используем dict
+def mutual_friends_dict(params, my_friends_list_new):
     i = 0
     mutual_friends_dict = {}
     for user in my_friends_list_new:
@@ -52,6 +52,25 @@ def mutual_friends(params, my_friends_list_new):
         if mutual_friends_dict[key] == len(my_friends_list_new)-1:
             print('Общий друг id {} {}'.format(key, user_ifo(params, key)))
 
+# ищем общих друзей friends.getMutual в помощь используем set
+def mutual_friends_set(params, my_friends_list_new):
+    i = 0
+    mutual_friends_list = set()
+    for user in my_friends_list_new:
+        # sleep(0.1)
+        if len(my_friends_list_new[i + 1:]) == 0:
+            continue
+        params['source_uid'] = user
+        params['target_uids'] = ','.join(map(str, my_friends_list_new[i + 1:]))
+        response = requests.get('https://api.vk.com/method/friends.getMutual', params)
+        i += 1
+        x = set((response.json()['response'][0]['common_friends']))
+        if len(mutual_friends_list) == 0:
+            mutual_friends_list = mutual_friends_list | x
+        else:
+            mutual_friends_list = mutual_friends_list & x
+    print('Общий друг id {} {}'.format((list(mutual_friends_list))[0], user_ifo(params, mutual_friends_list)))
+
 
 # собираем все в кучу
 def main_script():
@@ -66,7 +85,7 @@ def main_script():
     print('Друзей в новом списке', len(my_friends_list_new))
     print('-------------------------')
     print('Идет поиск общих друзей ожидайте')
-    mutual_friends(params, my_friends_list_new)
+    mutual_friends_set(params, my_friends_list_new)
     print('-------------------------')
     print('Конец работы скрипта', ctime())
 
