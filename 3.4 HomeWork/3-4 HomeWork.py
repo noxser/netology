@@ -72,6 +72,23 @@ def mutual_friends_set(params, my_friends_list_new):
             mutual_friends_list = mutual_friends_list & x
     print('Общий друг id {} {}'.format((list(mutual_friends_list))[0], user_ifo(params, mutual_friends_list)))
 
+# ищем общих друзей friends.get в помощь используем set
+def mutual_friends_set_ver_2(params, my_friends_list_new):
+    i = 0
+    mutual_friends_list = set()
+    for user in my_friends_list_new:
+        # sleep(0.1)
+        if len(my_friends_list_new[i + 1:]) == 0:
+            continue
+        params['user_id'] = user
+        response = requests.get('https://api.vk.com/method/friends.get', params)
+        x = set(response.json()['response']['items'])
+        if len(mutual_friends_list) == 0:
+            mutual_friends_list = mutual_friends_list | x
+        else:
+            mutual_friends_list = mutual_friends_list & x
+    print('Общий друг id {} {}'.format((list(mutual_friends_list))[0], user_ifo(params, mutual_friends_list)))
+
 
 # собираем все в кучу
 def main_script():
