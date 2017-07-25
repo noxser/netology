@@ -20,6 +20,13 @@ def str_to_float(distance):
         new_distance.append(float(new_str))
     return new_distance
 
+# убираем запятую и преобразуем значение в float реплейсом
+def str_to_float2(distance):
+    new_distance = []
+    for x in distance:
+        new_str = x.replace(',','')
+        new_distance.append(float(new_str))
+    return new_distance
 
 # преобразуем мили в киллометры
 def convert_length(value, from_unit, to_unit):
@@ -38,6 +45,6 @@ def main_func():
     from_unit = 'Miles'
     to_unit = 'Kilometers'
     print('Cуммарное расстояние пути {} км'.format(round(
-        convert_length(sum(str_to_float(open_file(file_name))), from_unit, to_unit), 2)))
+        convert_length(sum(str_to_float2(open_file(file_name))), from_unit, to_unit), 2)))
 
 main_func()
