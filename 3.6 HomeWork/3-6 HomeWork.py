@@ -23,18 +23,38 @@ class Birds(Animals):
     common_features = 'Have a wings'
     resource = 'egg'
 
+# под классы по видам животных
+class Cows(Mammals):
+    resource = 'meat and milk'
+
+class Goats(Mammals):
+    pass
+
+class Sheeps(Mammals):
+    resource = 'meat and wool'
+
+class Pigs(Mammals):
+    pass
+
+class Ducks(Birds):
+    pass
+
+class Geese(Birds):
+    pass
+
+class Chickens(Birds):
+    resource = 'meat and egg'
+
 
 # создаем обьект определенного класса
 
-# обьекты класса животные подкласса млекопитающие
-Cows = Mammals()
-Goats = Mammals()
-Sheeps = Mammals()
-Pigs = Mammals()
+# обьекты класса животные подкласса млекопитающие и покласса по видам животных
+cow_dusia = Cows()
+goat_vasiya = Goats()
 
-# обьекты класса животные подкласса птицы
-Ducks = Birds()
-Chickens = Birds()
-Geese = Birds()
+# обьекты класса животные подкласса птицы и покласса по видам птиц
+duck_boris = Birds()
+gees_ivanko = Birds()
 
-Geese.take_resource()
+cow_dusia.take_resource()
+cow_dusia.feed_animal()
