@@ -25,36 +25,70 @@ class Birds(Animals):
 
 # под классы по видам животных
 class Cows(Mammals):
+    # добавим конструктор чтобы обьекты были разные
     resource = 'meat and milk'
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
+
+
 
 class Goats(Mammals):
-    pass
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
+
 
 class Sheeps(Mammals):
     resource = 'meat and wool'
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
+
 
 class Pigs(Mammals):
-    pass
+    resource = 'beacon'
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
+
 
 class Ducks(Birds):
-    pass
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
+
 
 class Geese(Birds):
-    pass
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
+
 
 class Chickens(Birds):
     resource = 'meat and egg'
-
+    def __init__(self, veight, nickname):
+        self.veight = veight
+        self.nickname = nickname
 
 # создаем обьект определенного класса
 
 # обьекты класса животные подкласса млекопитающие и покласса по видам животных
-cow_dusia = Cows()
-goat_vasiya = Goats()
+cow_dusia = Cows(250, 'Дуся')
+cow_irka = Cows(230, 'Ирка')
+
+x = cow_dusia
+
+x.take_resource()
 
 # обьекты класса животные подкласса птицы и покласса по видам птиц
-duck_boris = Birds()
-gees_ivanko = Birds()
 
-cow_dusia.take_resource()
-cow_dusia.feed_animal()
+# cow_dusia.take_resource()
+# cow_dusia.feed_animal()
+#
+# cow_irka.take_resource()
+# cow_irka.feed_animal()
+# print('Коровка {} весит {} кг'.format(
+#     cow_dusia.nickname, cow_dusia.veight))
+# print('Коровка {} весит {} кг'.format(
+#     cow_irka.nickname, cow_irka.veight))
