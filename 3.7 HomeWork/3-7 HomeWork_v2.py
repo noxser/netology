@@ -60,7 +60,7 @@ class YandexMetrika:
 
     def get_counters_info(self):
         """
-        Выводим всю информацию по счетчикам YM
+        Выводим всю информацию по счетчикам YM на печать
         """
         for key, value in ym.get_counters().items():
             print('Наименование счетчика: {}\n'
@@ -70,3 +70,5 @@ class YandexMetrika:
 
 ym = YandexMetrika(TOKEN)
 ym.get_counters_info()
+
+
