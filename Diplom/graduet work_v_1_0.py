@@ -96,8 +96,8 @@ def main_script(user_id_glob):
     print('Конец работы скрипта', ctime())
 
 
-user_id_glob = '4556271' # айдишник из задания
-# user_id_glob = '5030613' # мой адишник
+user_id_glob = '4556271' # мой адишник
+# user_id_glob = '5030613' # препода адишник
 main_script(user_id_glob)
 
 # pprint(len(friends_list(params, user_id_glob)))
@@ -106,7 +106,7 @@ main_script(user_id_glob)
 
 # 179265 айдишник на котором все лмаеться 2880 групп у него
 # 326161 нет групп тоже ломалось
-# удален узер 178919029
+# 178919029 удален узер
 
 # мой 4556271
 # из задания 5030613
