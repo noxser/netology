@@ -14,7 +14,7 @@ params = {'access_token': TOKEN, 'v': VERSION}
 # для ускорения френдлист режу на 10
 def friends_list(params, user_id):
     params['user_id'] = user_id
-    # params['count'] = '10'
+    params['count'] = '10'
     response = requests.get('https://api.vk.com/method/friends.get', params)
     return (response.json())['response']['items']
 
