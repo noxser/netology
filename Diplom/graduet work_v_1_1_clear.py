@@ -4,7 +4,6 @@ import json
 
 
 TOKEN = '5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128'
-# TOKEN ='494d4e49c11a05d720d7cca8ec1a6d26682348d98b029d6116317916773e100977808fe5408d09cc9cfdb'
 VERSION = '5.68'
 params = {'access_token': TOKEN, 'v': VERSION}
 
@@ -13,7 +12,6 @@ params = {'access_token': TOKEN, 'v': VERSION}
 # для ускорения френдлист режу на 10
 def friends_list(params, user_id):
     params['user_id'] = user_id
-    params['count'] = '10'
     response = requests.get('https://api.vk.com/method/friends.get', params)
     return (response.json())['response']['items']
 
@@ -28,28 +26,19 @@ def user_groups(params, user_id):
 
 
 # запрашиваем группы внешней функцией и ищем уникальные
-# тут же обрабатываем ответ на запрос group.get
-# и проверяем валидность запроса если нет 'error' все ок делаем сравнение списков
-# если бэд то переходим к след итерации
-
 def personal_group(params, friends_list, user_id_glob):
-    # список групп User-а
     a = set(user_groups(params, user_id_glob)['response']['items'])
     i = 0
-    # b = None
     for user in friends_list:
         sleep(1)
         i += 1
-        x = user_groups(params, user)  # список групп друга
-        # print((x))
-        if x.get('error', 'active') == 'active':  # делаем проверку на error
-            b = set(x['response']['items'])  # преобразуем в множество
+        gr = user_groups(params, user)  # список групп друга
+        if gr.get('error', 'active') == 'active':  # делаем проверку на error
+            b = set(gr['response']['items'])  # преобразуем в множество
         # находим уникальные группы из 2-х множеств которые принадлежат только 1
             a = a - b
         # нарыл клевую штуку для печати процесса работы )
         print('\rПроверенно друзей {} из {}'.format(i, len(friends_list)), end='', flush=True)
-
-
     return a
 
 
@@ -101,20 +90,7 @@ def main_script():
     print('----------------------------------------------')
     print('Конец работы скрипта', ctime())
 
+#  id = '5030613'
 
-#
-# user_id_glob = '4556271'  # мой адишник
-# user_id_glob = '5030613' # препода адишник
-# 87074577 антон
 main_script()
 
-# print(len(friends_list(params, 4556271)))
-# print(user_groups(params, 4556271))
-
-
-# 179265 айдишник на котором все лмаеться 2880 групп у него
-# 326161 нет групп тоже ломалось
-# 178919029 удален узер
-
-# мой 4556271
-# из задания 5030613
