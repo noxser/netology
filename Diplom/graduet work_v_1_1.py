@@ -31,7 +31,7 @@ def user_groups(params, user_id):
 
 # запрашиваем группы внешней функцией и ищем уникальные
 # тут же обрабатываем ответ на запрос group.get
-# и проверяем валидность запроса если все ок делаем сравнение списков
+# и проверяем валидность запроса если нет 'error' все ок делаем сравнение списков
 # если бэд то переходим к след итерации
 
 def personal_group(params, friends_list, user_id_glob):
@@ -41,16 +41,17 @@ def personal_group(params, friends_list, user_id_glob):
     i = 0
     b = None
     for user in friends_list:
+        sleep(1)
         i += 1
         x = user_groups(params, user)  # список групп друга
         # print((x))
         if x.get('error', 'active') == 'active':  # делаем проверку на error
             b = set(x['response']['items'])  # преобразуем в множество
         # находим уникальные группы из 2-х множеств которые принадлежат только 1
-        a = a - b
+            a = a - b
         # нарыл клевую штуку для печати процесса работы )
         print('\rПроверенно друзей {} из {}'.format(i, len(friends_list)), end='', flush=True)
-        sleep(0.1)
+
 
     return a
 
@@ -94,6 +95,7 @@ def main_script(user_id_glob):
     print('У данного пользователя {} уникальных групп из {}'
           .format(len(a), len(user_groups(params, user_id_glob)['response']['items']))
           )
+    sleep(1)
     write_json(group_info(params, a))
     print('-------------------------')
     print('Список групп находиться в файле groups.json')
@@ -103,8 +105,8 @@ def main_script(user_id_glob):
 
 #
 # user_id_glob = '4556271'  # мой адишник
-user_id_glob = '5030613' # препода адишник
-main_script(user_id_glob)
+# user_id_glob = '5030613' # препода адишник
+main_script(87074577)
 
 # print(len(friends_list(params, 4556271)))
 # print(user_groups(params, 4556271))
