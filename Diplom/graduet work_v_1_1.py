@@ -102,8 +102,8 @@ def main_script(user_id_glob):
 
 
 #
-user_id_glob = '4556271'  # мой адишник
-# user_id_glob = '5030613' # препода адишник
+# user_id_glob = '4556271'  # мой адишник
+user_id_glob = '5030613' # препода адишник
 main_script(user_id_glob)
 
 # print(len(friends_list(params, 4556271)))
