@@ -14,7 +14,7 @@ params = {'access_token': TOKEN, 'v': VERSION}
 # для ускорения френдлист режу на 10
 def friends_list(params, user_id):
     params['user_id'] = user_id
-    params['count'] = '10'
+    # params['count'] = '10'
     response = requests.get('https://api.vk.com/method/friends.get', params)
     return (response.json())['response']['items']
 
@@ -96,8 +96,8 @@ def main_script(user_id_glob):
     print('Конец работы скрипта', ctime())
 
 
-user_id_glob = '4556271' # мой адишник
-# user_id_glob = '5030613' # препода адишник
+# user_id_glob = '4556271' # мой адишник
+user_id_glob = '5030613' # препода адишник
 main_script(user_id_glob)
 
 # pprint(len(friends_list(params, user_id_glob)))
