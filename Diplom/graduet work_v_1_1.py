@@ -4,7 +4,6 @@ import requests
 import json
 import sys
 
-
 TOKEN = '5dfd6b0dee902310df772082421968f4c06443abecbc082a8440cb18910a56daca73ac8d04b25154a1128'
 # TOKEN ='494d4e49c11a05d720d7cca8ec1a6d26682348d98b029d6116317916773e100977808fe5408d09cc9cfdb'
 VERSION = '5.68'
@@ -30,7 +29,7 @@ def user_groups(params, user_id):
     return response.json()
 
 
-#запрашиваем группы внешней функцией и ищем уникальные
+# запрашиваем группы внешней функцией и ищем уникальные
 # тут же обрабатываем ответ на запрос group.get
 # и проверяем валидность запроса если все ок делаем сравнение списков
 # если бэд то переходим к след итерации
@@ -38,13 +37,13 @@ def user_groups(params, user_id):
 def personal_group(params, friends_list, user_id_glob):
     # список групп User-а
     a = set(user_groups(params, user_id_glob)['response']['items'])
-    print(len(a))
+    # print(len(a))
     i = 0
     b = None
     for user in friends_list:
         i += 1
-        x = user_groups(params, user) # список групп друга
-        print((x))
+        x = user_groups(params, user)  # список групп друга
+        # print((x))
         if x.get('error', 'active') == 'active':  # делаем проверку на error
             b = set(x['response']['items'])  # преобразуем в множество
         # находим уникальные группы из 2-х множеств которые принадлежат только 1
@@ -72,6 +71,12 @@ def group_info(params, group_ids):
     return gr_lst
 
 
+# формируем json
+def write_json(data):
+    with open('groups.json', 'w', encoding='utf-8') as f:
+        json.dump(data, f, indent=1, ensure_ascii=0)
+
+
 # собираем все в кучу
 def main_script(user_id_glob):
     print('Начало работы скрипта', ctime())
@@ -88,18 +93,17 @@ def main_script(user_id_glob):
     sleep(1)
     print('У данного пользователя {} уникальных групп из {}'
           .format(len(a), len(user_groups(params, user_id_glob)['response']['items']))
-        )
-    b = group_info(params, a)
-    with open('groups.json', 'w', encoding='utf-8') as f:
-        json.dump(b, f, indent=1, ensure_ascii=0)
+          )
+    write_json(group_info(params, a))
     print('-------------------------')
     print('Список групп находиться в файле groups.json')
     print('-------------------------')
     print('Конец работы скрипта', ctime())
 
+
 #
-# user_id_glob = '4556271' # мой адишник
-user_id_glob = '5030613' # препода адишник
+user_id_glob = '4556271'  # мой адишник
+# user_id_glob = '5030613' # препода адишник
 main_script(user_id_glob)
 
 # print(len(friends_list(params, 4556271)))
@@ -112,5 +116,3 @@ main_script(user_id_glob)
 
 # мой 4556271
 # из задания 5030613
-
-
