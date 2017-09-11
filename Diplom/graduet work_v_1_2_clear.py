@@ -32,7 +32,7 @@ def check_input_ids():
     return valid_id
 
 
-def get_json(**kwargs):
+def get_get(**kwargs):
     """
     Принимает url для get Запроса и параметры, формирует запрос
     и возврашает ответ, а дальше уже его другие функции разбирают
@@ -51,7 +51,7 @@ def friends_list(user_id):
     Вызываем get_json скармливаем ей url и параметры передаваемые в запросе.
     Только список друзей возврашает ID пользователей
     """
-    response = get_json(url='https://api.vk.com/method/friends.get', user_id=user_id)
+    response = get_get(url='https://api.vk.com/method/friends.get', user_id=user_id)
     return (response.json())['response']['items']
 
 
@@ -60,7 +60,7 @@ def user_groups(user_id):
     Вызываем get_json скармливаем ей url и параметры передаваемые в запросе.
     Формирует список групп.
     """
-    response = get_json(url='https://api.vk.com/method/groups.get', count='1000', extended='0', user_id=user_id)
+    response = get_get(url='https://api.vk.com/method/groups.get', count='1000', extended='0', user_id=user_id)
     return response.json()
 
 
@@ -89,7 +89,7 @@ def group_info(group_ids):
     Вызываем get_json скармливаем ей url и параметры передаваемые в запросе.
     Получаем информацию о группах и тут уже формируем для выгрузки в json.
     """
-    response = get_json(
+    response = get_get(
         url='https://api.vk.com/method/groups.getById',
         group_ids=','.join(map(str, group_ids)),
         fields='members_count'
