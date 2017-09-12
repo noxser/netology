@@ -15,7 +15,7 @@ def get_token():
     print('?'.join((AUTHORIZE_URL, urlencode(auth_data))))
 
 
-TOKEN = 'AQAAAAAAgX7SAARxH30zPEAhW047muFOlPvfcc4'
+TOKEN = ''
 
 
 class YMmain:
