@@ -5,6 +5,8 @@ import json
 
 TOKEN = ''
 VERSION = '5.68'
+# ошибки от api VK которые можно отдать программе, остальные ловим
+good_error = frozenset([18, 113])
 
 
 def check_input_ids():
@@ -34,27 +36,21 @@ def get_get(method, **kwargs):
     Принимает url для get Запроса и параметры, формирует запрос
     и возврашает ответ, а дальше уже его другие функции разбирают
     """
-    bad_error_lst = [
-        1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-        11, 14, 15, 16, 17, 20, 21,
-        23, 24, 27, 28, 100, 101, 150,
-        200, 201, 203, 300, 500, 600, 603
-    ]  # Выдаем предупреждение и заканчиваем прграмму для разбора
-    good_error_lst = [18, 113]  # пропускаем в программу дальше
     params = {'access_token': TOKEN, 'v': VERSION}
     for key, value in kwargs.items():
         params[key] = value
     response = requests.get('https://api.vk.com/method/{}'.format(method), params)
-    # print(response.json())
     if (response.json()).get('response'):
         good_ansver = response
     else:
-        if response.json()['error']['error_code'] in good_error_lst:
+        if response.json()['error']['error_code'] in good_error:
             good_ansver = response
-        if response.json()['error']['error_code'] in bad_error_lst:
-            print('Обожечки возникла ошибка: {}\nОни говорят: {}'.format(
-                response.json()['error']['error_code'], response.json()['error']['error_msg']))
+        else:
+            print('Обожечки возникла ошибка: {}\nОни говорят: {}'
+                  .format(response.json()['error']['error_code'],
+                          response.json()['error']['error_msg']))
             exit()
+
     return good_ansver
 
 
